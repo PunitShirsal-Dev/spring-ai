@@ -27,8 +27,8 @@ public class ChatController {
 
     @PostMapping
     @Operation(summary = BLOCKING_CHAT_SEND_A_MESSAGE_AND_GET_A_FULL_RESPONSE)
-    public ResponseEntity<CustomDto.ChatResponse> chat(
-            @Valid @RequestBody CustomDto.ChatRequest chatRequest,
+    public ResponseEntity<ChatResponse> chat(
+            @Valid @RequestBody ChatRequest chatRequest,
             @AuthenticationPrincipal ChatUser user,
             WebRequest request) {
         try {
@@ -41,7 +41,7 @@ public class ChatController {
     @PostMapping(value = "/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     @Operation(summary = STREAMING_CHAT_RESPONSE_DELIVERED_AS_SERVER_SENT_EVENTS)
     public Flux<String> streamChat(
-            @Valid @RequestBody CustomDto.ChatRequest chatRequest,
+            @Valid @RequestBody ChatRequest chatRequest,
             @AuthenticationPrincipal ChatUser user,
             WebRequest request) {
         try {
@@ -53,7 +53,7 @@ public class ChatController {
 
     @GetMapping("/history/{sessionId}")
     @Operation(summary = GET_CONVERSATION_HISTORY_FOR_A_SESSION)
-    public ResponseEntity<List<CustomDto.HistoryEntry>> history(
+    public ResponseEntity<List<HistoryEntry>> history(
             @PathVariable String sessionId,
             @AuthenticationPrincipal ChatUser user,
             WebRequest request) {

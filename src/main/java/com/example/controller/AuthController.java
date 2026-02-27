@@ -30,10 +30,10 @@ public class AuthController {
     @Operation(summary = REGISTER_A_NEW_USER, responses = {
             @ApiResponse(responseCode = CREATED_STATUS_CODE, description = USER_REGISTERED_SUCCESSFULLY),
             @ApiResponse(responseCode = BAD_REQUEST_STATUS_CODE, description = USERNAME_EMAIL_ALREADY_TAKEN_OR_VALIDATION_ERROR)})
-    public ResponseEntity<CustomDto.ApiResponse> register(
-            @Valid @RequestBody CustomDto.RegisterRequest registerRequest,
+    public ResponseEntity<ApiResponse> register(
+            @Valid @RequestBody RegisterRequest registerRequest,
             WebRequest request) {
-        CustomDto.TokenResponse tokenResponse;
+        TokenResponse tokenResponse;
         try {
             tokenResponse = authService.register(registerRequest);
         } catch (Exception e) {
@@ -46,10 +46,10 @@ public class AuthController {
     @Operation(summary = LOGIN_WITH_USERNAME_AND_PASSWORD, responses = {
             @ApiResponse(responseCode = OK_STATUS_CODE, description = LOGIN_SUCCESSFUL),
             @ApiResponse(responseCode = UNAUTHORIZED_STATUS_CODE, description = INVALID_CREDENTIALS)})
-    public ResponseEntity<CustomDto.ApiResponse> login(
-            @Valid @RequestBody CustomDto.LoginRequest loginRequest,
+    public ResponseEntity<ApiResponse> login(
+            @Valid @RequestBody LoginRequest loginRequest,
             WebRequest request) {
-        CustomDto.TokenResponse login;
+        TokenResponse login;
         try {
             login = authService.login(loginRequest);
         } catch (Exception e) {
@@ -63,10 +63,10 @@ public class AuthController {
     @Operation(summary = REFRESH_ACCESS_TOKEN_USING_REFRESH_TOKEN, responses = {
             @ApiResponse(responseCode = OK_STATUS_CODE, description = TOKEN_REFRESHED),
             @ApiResponse(responseCode = BAD_REQUEST_STATUS_CODE, description = INVALID_OR_EXPIRED_REFRESH_TOKEN)})
-    public ResponseEntity<CustomDto.ApiResponse> refresh(
-            @Valid @RequestBody CustomDto.RefreshRequest refreshRequest,
+    public ResponseEntity<ApiResponse> refresh(
+            @Valid @RequestBody RefreshRequest refreshRequest,
             WebRequest request) {
-        CustomDto.TokenResponse refresh;
+        TokenResponse refresh;
         try {
             refresh = authService.refresh(refreshRequest);
         } catch (Exception e) {
@@ -77,7 +77,7 @@ public class AuthController {
 
     @GetMapping("/info")
     @Operation(summary = GET_CURRENTLY_AUTHENTICATED_USER_INFO)
-    public ResponseEntity<CustomDto.ApiResponse> me(Authentication auth, WebRequest request) {
+    public ResponseEntity<ApiResponse> me(Authentication auth, WebRequest request) {
         Map<String, String> map;
         try {
             map = Map.of(USERNAME, auth.getName());

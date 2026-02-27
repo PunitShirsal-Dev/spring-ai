@@ -22,7 +22,7 @@ public class EmbeddingController {
 
     @PostMapping
     @Operation(summary = GENERATE_AN_EMBEDDING_VECTOR_FOR_THE_GIVEN_TEXT)
-    public ResponseEntity<CustomDto.EmbedResponse> embed(@Valid @RequestBody CustomDto.EmbedRequest embedRequest, WebRequest request) {
+    public ResponseEntity<EmbedResponse> embed(@Valid @RequestBody EmbedRequest embedRequest, WebRequest request) {
         try {
             return ResponseEntity.ok(embeddingService.embed(embedRequest));
         } catch (Exception e) {

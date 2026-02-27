@@ -54,9 +54,9 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(AdminCustomException.class)
-    public ResponseEntity<CustomDto.ErrorResponse> handleAdminCustomException(AdminCustomException ex, WebRequest request) {
+    public ResponseEntity<ErrorResponse> handleAdminCustomException(AdminCustomException ex, WebRequest request) {
         Result result = getResult();
-        CustomDto.ErrorResponse response = new CustomDto.ErrorResponse(
+        ErrorResponse response = new ErrorResponse(
                 result.status(),
                 ex.getMessage(),
                 EXCEPTION_OCCURRED,
@@ -68,9 +68,9 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(AuthCustomException.class)
-    public ResponseEntity<CustomDto.ErrorResponse> handleAuthCustomException(AuthCustomException ex, WebRequest request) {
+    public ResponseEntity<ErrorResponse> handleAuthCustomException(AuthCustomException ex, WebRequest request) {
         Result result = getResult();
-        CustomDto.ErrorResponse response = new CustomDto.ErrorResponse(
+        ErrorResponse response = new ErrorResponse(
                 result.status(),
                 ex.getMessage(),
                 EXCEPTION_OCCURRED,
@@ -82,9 +82,9 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(ChatCustomException.class)
-    public ResponseEntity<CustomDto.ErrorResponse> handleChatCustomException(ChatCustomException ex, WebRequest request) {
+    public ResponseEntity<ErrorResponse> handleChatCustomException(ChatCustomException ex, WebRequest request) {
         Result result = getResult();
-        CustomDto.ErrorResponse response = new CustomDto.ErrorResponse(
+        ErrorResponse response = new ErrorResponse(
                 result.status(),
                 ex.getMessage(),
                 EXCEPTION_OCCURRED,
@@ -96,9 +96,9 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(EmbeddingCustomException.class)
-    public ResponseEntity<CustomDto.ErrorResponse> handleEmbeddingCustomException(EmbeddingCustomException ex, WebRequest request) {
+    public ResponseEntity<ErrorResponse> handleEmbeddingCustomException(EmbeddingCustomException ex, WebRequest request) {
         Result result = getResult();
-        CustomDto.ErrorResponse response = new CustomDto.ErrorResponse(
+        ErrorResponse response = new ErrorResponse(
                 result.status(),
                 ex.getMessage(),
                 EXCEPTION_OCCURRED,
@@ -110,9 +110,9 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(RagCustomException.class)
-    public ResponseEntity<CustomDto.ErrorResponse> handleRagCustomException(RagCustomException ex, WebRequest request) {
+    public ResponseEntity<ErrorResponse> handleRagCustomException(RagCustomException ex, WebRequest request) {
         Result result = getResult();
-        CustomDto.ErrorResponse response = new CustomDto.ErrorResponse(
+        ErrorResponse response = new ErrorResponse(
                 result.status(),
                 ex.getMessage(),
                 EXCEPTION_OCCURRED,

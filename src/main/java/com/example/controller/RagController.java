@@ -29,7 +29,7 @@ public class RagController {
     @PostMapping(value = "/ingest/pdf", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PreAuthorize(HAS_ROLE_ADMIN)
     @Operation(summary = UPLOAD_A_PDF_FOR_INGESTION_INTO_THE_VECTOR_STORE_ADMIN_ONLY)
-    public ResponseEntity<CustomDto.IngestResponse> ingestPdf(
+    public ResponseEntity<IngestResponse> ingestPdf(
             @RequestParam(FILE) MultipartFile file,
             WebRequest request) throws IOException {
         try {
@@ -43,7 +43,7 @@ public class RagController {
     @PostMapping("/ingest/text")
     @PreAuthorize(HAS_ROLE_ADMIN)
     @Operation(summary = INGEST_RAW_TEXT_INTO_THE_VECTOR_STORE_ADMIN_ONLY)
-    public ResponseEntity<CustomDto.IngestResponse> ingestText(
+    public ResponseEntity<IngestResponse> ingestText(
             @RequestParam String text,
             @RequestParam(defaultValue = MANUAL) String source,
             WebRequest request) throws IOException {
@@ -56,8 +56,8 @@ public class RagController {
 
     @PostMapping("/query")
     @Operation(summary = ASK_A_QUESTION_AGAINST_THE_KNOWLEDGE_BASE)
-    public ResponseEntity<CustomDto.RagResponse> query(
-            @Valid @RequestBody CustomDto.RagRequest ragRequest, WebRequest request) {
+    public ResponseEntity<RagResponse> query(
+            @Valid @RequestBody RagRequest ragRequest, WebRequest request) {
         try {
             return ResponseEntity.ok(ragService.query(ragRequest));
         } catch (Exception e) {

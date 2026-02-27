@@ -36,7 +36,7 @@ public class AdminController {
 
     @GetMapping("/users")
     @Operation(summary = LIST_ALL_REGISTERED_USERS)
-    public ResponseEntity<CustomDto.ApiResponse> listUsers(WebRequest request) {
+    public ResponseEntity<ApiResponse> listUsers(WebRequest request) {
         List<Map<String, Object>> list;
         try {
             list = userRepository.findAll().stream().map(this::userToMap).toList();
@@ -48,7 +48,7 @@ public class AdminController {
 
     @PutMapping("/users/{id}/role")
     @Operation(summary = UPDATE_A_USER_S_ROLE_USER_OR_ADMIN)
-    public ResponseEntity<CustomDto.ApiResponse> updateRole(@PathVariable Long id, @RequestParam String role, WebRequest request) {
+    public ResponseEntity<ApiResponse> updateRole(@PathVariable Long id, @RequestParam String role, WebRequest request) {
         Map<String, String> map;
         try {
             ChatUser chatUser = userRepository.findById(id).orElseThrow(() -> new AdminCustomException("User with id: " + id + " not found", request));
@@ -63,7 +63,7 @@ public class AdminController {
 
     @DeleteMapping("/users/{id}")
     @Operation(summary = DELETE_A_USER_BY_ID)
-    public ResponseEntity<CustomDto.ApiResponse> deleteUser(@PathVariable Long id, WebRequest request) {
+    public ResponseEntity<ApiResponse> deleteUser(@PathVariable Long id, WebRequest request) {
         try {
             userRepository.deleteById(id);
         } catch (Exception e) {
