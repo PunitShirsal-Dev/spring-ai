@@ -5,7 +5,6 @@ import jakarta.validation.Valid;
 import org.springframework.ai.entity.ChatUser;
 import org.springframework.ai.exception.ChatCustomException;
 import org.springframework.ai.service.ChatService;
-import org.springframework.ai.utility.CustomDto;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

@@ -8,7 +8,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.ai.entity.ChatUser;
 import org.springframework.ai.exception.AdminCustomException;
 import org.springframework.ai.repository.ChatUserRepository;
-import org.springframework.ai.utility.CustomDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;

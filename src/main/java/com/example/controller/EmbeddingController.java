@@ -4,7 +4,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.ai.exception.EmbeddingCustomException;
 import org.springframework.ai.service.EmbeddingService;
-import org.springframework.ai.utility.CustomDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
