@@ -15,8 +15,6 @@ import org.springframework.web.context.request.WebRequest;
 
 import java.util.Map;
 
-import static org.springframework.ai.utility.AiConstants.*;
-
 public class AuthController {
 
     private final AuthService authService;

@@ -14,8 +14,6 @@ import reactor.core.publisher.Flux;
 
 import java.util.List;
 
-import static org.springframework.ai.utility.AiConstants.*;
-
 public class ChatController {
 
     private final ChatService chatService;

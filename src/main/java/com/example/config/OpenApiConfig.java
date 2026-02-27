@@ -14,8 +14,6 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
-import static org.springframework.ai.utility.AiConstants.*;
-
 @Configuration
 public class OpenApiConfig {
 

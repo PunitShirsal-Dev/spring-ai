@@ -10,9 +10,6 @@ import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import static org.springframework.ai.utility.AiConstants.DEFAULT_MSG;
-
-
 @Configuration
 public class AiConfig {
 

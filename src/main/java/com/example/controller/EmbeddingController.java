@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.context.request.WebRequest;
 
-import static org.springframework.ai.utility.AiConstants.GENERATE_AN_EMBEDDING_VECTOR_FOR_THE_GIVEN_TEXT;
-
 public class EmbeddingController {
 
     private final EmbeddingService embeddingService;

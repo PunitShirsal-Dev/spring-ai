@@ -17,8 +17,6 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.springframework.ai.utility.AiConstants.*;
-
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {

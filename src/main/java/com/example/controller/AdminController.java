@@ -1,6 +1,5 @@
 package com.example.controller;
 
-
 import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -16,8 +15,6 @@ import org.springframework.web.context.request.WebRequest;
 
 import java.util.List;
 import java.util.Map;
-
-import static org.springframework.ai.utility.AiConstants.*;
 
 @RestController
 @RequestMapping("/api/admin")
