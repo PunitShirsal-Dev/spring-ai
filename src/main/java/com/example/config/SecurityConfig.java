@@ -29,6 +29,8 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import java.util.List;
 import java.util.Map;
 
+import static org.springframework.ai.utility.Constants.*;
+
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity

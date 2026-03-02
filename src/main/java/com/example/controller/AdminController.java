@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.ai.entity.ChatUser;
 import org.springframework.ai.exception.AdminCustomException;
 import org.springframework.ai.repository.ChatUserRepository;
+import org.springframework.ai.utility.Ai;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -15,6 +16,8 @@ import org.springframework.web.context.request.WebRequest;
 
 import java.util.List;
 import java.util.Map;
+
+import static org.springframework.ai.utility.Constants.*;
 
 @RestController
 @RequestMapping("/api/admin")
@@ -32,7 +35,7 @@ public class AdminController {
 
     @GetMapping("/users")
     @Operation(summary = LIST_ALL_REGISTERED_USERS)
-    public ResponseEntity<ApiResponse> listUsers(WebRequest request) {
+    public ResponseEntity<Ai.ApiResponse> listUsers(WebRequest request) {
         List<Map<String, Object>> list;
         try {
             list = userRepository.findAll().stream().map(this::userToMap).toList();
@@ -44,7 +47,7 @@ public class AdminController {
 
     @PutMapping("/users/{id}/role")
     @Operation(summary = UPDATE_A_USER_S_ROLE_USER_OR_ADMIN)
-    public ResponseEntity<ApiResponse> updateRole(@PathVariable Long id, @RequestParam String role, WebRequest request) {
+    public ResponseEntity<Ai.ApiResponse> updateRole(@PathVariable Long id, @RequestParam String role, WebRequest request) {
         Map<String, String> map;
         try {
             ChatUser chatUser = userRepository.findById(id).orElseThrow(() -> new AdminCustomException("User with id: " + id + " not found", request));
@@ -59,7 +62,7 @@ public class AdminController {
 
     @DeleteMapping("/users/{id}")
     @Operation(summary = DELETE_A_USER_BY_ID)
-    public ResponseEntity<ApiResponse> deleteUser(@PathVariable Long id, WebRequest request) {
+    public ResponseEntity<Ai.ApiResponse> deleteUser(@PathVariable Long id, WebRequest request) {
         try {
             userRepository.deleteById(id);
         } catch (Exception e) {

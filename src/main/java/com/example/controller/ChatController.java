@@ -5,6 +5,7 @@ import jakarta.validation.Valid;
 import org.springframework.ai.entity.ChatUser;
 import org.springframework.ai.exception.ChatCustomException;
 import org.springframework.ai.service.ChatService;
+import org.springframework.ai.utility.Ai;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -13,6 +14,8 @@ import org.springframework.web.context.request.WebRequest;
 import reactor.core.publisher.Flux;
 
 import java.util.List;
+
+import static org.springframework.ai.utility.Constants.*;
 
 public class ChatController {
 
@@ -24,8 +27,8 @@ public class ChatController {
 
     @PostMapping
     @Operation(summary = BLOCKING_CHAT_SEND_A_MESSAGE_AND_GET_A_FULL_RESPONSE)
-    public ResponseEntity<ChatResponse> chat(
-            @Valid @RequestBody ChatRequest chatRequest,
+    public ResponseEntity<Ai.ChatResponse> chat(
+            @Valid @RequestBody Ai.ChatRequest chatRequest,
             @AuthenticationPrincipal ChatUser user,
             WebRequest request) {
         try {
@@ -38,7 +41,7 @@ public class ChatController {
     @PostMapping(value = "/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     @Operation(summary = STREAMING_CHAT_RESPONSE_DELIVERED_AS_SERVER_SENT_EVENTS)
     public Flux<String> streamChat(
-            @Valid @RequestBody ChatRequest chatRequest,
+            @Valid @RequestBody Ai.ChatRequest chatRequest,
             @AuthenticationPrincipal ChatUser user,
             WebRequest request) {
         try {
@@ -50,7 +53,7 @@ public class ChatController {
 
     @GetMapping("/history/{sessionId}")
     @Operation(summary = GET_CONVERSATION_HISTORY_FOR_A_SESSION)
-    public ResponseEntity<List<HistoryEntry>> history(
+    public ResponseEntity<List<Ai.HistoryEntry>> history(
             @PathVariable String sessionId,
             @AuthenticationPrincipal ChatUser user,
             WebRequest request) {

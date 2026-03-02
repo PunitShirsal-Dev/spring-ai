@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.ai.exception.RagCustomException;
 import org.springframework.ai.service.RagService;
+import org.springframework.ai.utility.Ai;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -14,6 +15,8 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+
+import static org.springframework.ai.utility.Constants.*;
 
 public class RagController {
 
@@ -26,7 +29,7 @@ public class RagController {
     @PostMapping(value = "/ingest/pdf", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PreAuthorize(HAS_ROLE_ADMIN)
     @Operation(summary = UPLOAD_A_PDF_FOR_INGESTION_INTO_THE_VECTOR_STORE_ADMIN_ONLY)
-    public ResponseEntity<IngestResponse> ingestPdf(
+    public ResponseEntity<Ai.IngestResponse> ingestPdf(
             @RequestParam(FILE) MultipartFile file,
             WebRequest request) throws IOException {
         try {
@@ -40,7 +43,7 @@ public class RagController {
     @PostMapping("/ingest/text")
     @PreAuthorize(HAS_ROLE_ADMIN)
     @Operation(summary = INGEST_RAW_TEXT_INTO_THE_VECTOR_STORE_ADMIN_ONLY)
-    public ResponseEntity<IngestResponse> ingestText(
+    public ResponseEntity<Ai.IngestResponse> ingestText(
             @RequestParam String text,
             @RequestParam(defaultValue = MANUAL) String source,
             WebRequest request) throws IOException {
@@ -53,8 +56,8 @@ public class RagController {
 
     @PostMapping("/query")
     @Operation(summary = ASK_A_QUESTION_AGAINST_THE_KNOWLEDGE_BASE)
-    public ResponseEntity<RagResponse> query(
-            @Valid @RequestBody RagRequest ragRequest, WebRequest request) {
+    public ResponseEntity<Ai.RagResponse> query(
+            @Valid @RequestBody Ai.RagRequest ragRequest, WebRequest request) {
         try {
             return ResponseEntity.ok(ragService.query(ragRequest));
         } catch (Exception e) {

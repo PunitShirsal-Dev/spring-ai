@@ -3,6 +3,7 @@ package com.example.exception;
 import lombok.extern.slf4j.Slf4j;
 import org.jspecify.annotations.NonNull;
 import org.springframework.ai.exception.*;
+import org.springframework.ai.utility.Ai;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
@@ -16,6 +17,8 @@ import org.springframework.web.context.request.WebRequest;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
+
+import static org.springframework.ai.utility.Constants.*;
 
 @Slf4j
 @RestControllerAdvice
@@ -51,9 +54,9 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(AdminCustomException.class)
-    public ResponseEntity<ErrorResponse> handleAdminCustomException(AdminCustomException ex, WebRequest request) {
+    public ResponseEntity<Ai.ErrorResponse> handleAdminCustomException(AdminCustomException ex, WebRequest request) {
         Result result = getResult();
-        ErrorResponse response = new ErrorResponse(
+        Ai.ErrorResponse response = new Ai.ErrorResponse(
                 result.status(),
                 ex.getMessage(),
                 EXCEPTION_OCCURRED,
@@ -65,9 +68,9 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(AuthCustomException.class)
-    public ResponseEntity<ErrorResponse> handleAuthCustomException(AuthCustomException ex, WebRequest request) {
+    public ResponseEntity<Ai.ErrorResponse> handleAuthCustomException(AuthCustomException ex, WebRequest request) {
         Result result = getResult();
-        ErrorResponse response = new ErrorResponse(
+        Ai.ErrorResponse response = new Ai.ErrorResponse(
                 result.status(),
                 ex.getMessage(),
                 EXCEPTION_OCCURRED,
@@ -79,9 +82,9 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(ChatCustomException.class)
-    public ResponseEntity<ErrorResponse> handleChatCustomException(ChatCustomException ex, WebRequest request) {
+    public ResponseEntity<Ai.ErrorResponse> handleChatCustomException(ChatCustomException ex, WebRequest request) {
         Result result = getResult();
-        ErrorResponse response = new ErrorResponse(
+        Ai.ErrorResponse response = new Ai.ErrorResponse(
                 result.status(),
                 ex.getMessage(),
                 EXCEPTION_OCCURRED,
@@ -93,9 +96,9 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(EmbeddingCustomException.class)
-    public ResponseEntity<ErrorResponse> handleEmbeddingCustomException(EmbeddingCustomException ex, WebRequest request) {
+    public ResponseEntity<Ai.ErrorResponse> handleEmbeddingCustomException(EmbeddingCustomException ex, WebRequest request) {
         Result result = getResult();
-        ErrorResponse response = new ErrorResponse(
+        Ai.ErrorResponse response = new Ai.ErrorResponse(
                 result.status(),
                 ex.getMessage(),
                 EXCEPTION_OCCURRED,
@@ -107,9 +110,9 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(RagCustomException.class)
-    public ResponseEntity<ErrorResponse> handleRagCustomException(RagCustomException ex, WebRequest request) {
+    public ResponseEntity<Ai.ErrorResponse> handleRagCustomException(RagCustomException ex, WebRequest request) {
         Result result = getResult();
-        ErrorResponse response = new ErrorResponse(
+        Ai.ErrorResponse response = new Ai.ErrorResponse(
                 result.status(),
                 ex.getMessage(),
                 EXCEPTION_OCCURRED,
